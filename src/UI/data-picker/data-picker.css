@@ -1,0 +1,57 @@
+.date-picker {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 8px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.date-picker__header { 
+    display: flex;
+    gap: 8px;
+}
+
+.date-picker__header-button {
+    background-color: lightgray;
+    width: 60px;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.date-picker__data-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+}
+
+.date-picker__data-grid-item {
+    cursor: pointer;
+    background-color: lightblue;
+    text-align: center;
+}
+
+.date-picker__selected-data {
+    display: flex;
+    background-color: lightgray;
+    align-items: center;
+    padding: 8px;
+    justify-content: center;
+    border-radius: 4px;
+    gap: 4px;
+    flex-direction: row-reverse;
+}
+
+.date-picker__header-button:focus,
+.date-picker__header-button:hover,
+.date-picker__header-button:active,
+.date-picker__header-button--selected {
+    background-color: grey;
+    color: white;
+}
+
+ul, li {
+    all: unset;
+}
