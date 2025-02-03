@@ -11,3 +11,10 @@ export interface ITimeUnitValues {
     }, 
     'Day' : number[]
 }
+
+export interface FormInputProps {
+    label: string;
+    inputType: string;
+    value: string;
+    actionFn: (value: string) => void;
+}
