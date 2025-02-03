@@ -1,0 +1,15 @@
+.filters {
+    display: flex;
+    flex-direction: column;
+    width: 18.75rem;
+    position: absolute;
+    z-index: 100;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.filters__title {
+    border-bottom: 1px solid lightgrey;
+    padding: 8px;
+}
