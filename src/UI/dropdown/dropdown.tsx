@@ -1,6 +1,6 @@
 import React from 'react';
 import {forwardRef, useImperativeHandle, useRef, useState} from 'react';
-import { DropdownComponentProps, DropdownProps } from "../../interfaces/task";
+import { DropdownComponentProps, DropdownProps } from "../../interfaces/uiInterfaces";
 import "./dropdown.css";
 
 const Dropdown = forwardRef(({options} : DropdownComponentProps, ref) => {
