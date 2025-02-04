@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IDate } from "../../interfaces/uiInterfaces";
-import { monthNumberNameMap } from "../data-picker/constants";
+import { monthNumberNameMap } from "../date-picker/constants";
 import DateFilterDropdown from "./date-filter-dropdown/date-filter-dropdown";
 import "./date-filter.css";
 

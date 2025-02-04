@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import useCloseContainerWhenClickOutside from "../../../hooks/useCloseContainerWhenClickOutside";
 import { IDate } from "../../../interfaces/uiInterfaces";
-import DatePicker from "../../data-picker/data-picker";
+import DatePicker from "../../date-picker/date-picker";
 
 function DateFilterDropdown({title , selectedDate, setDate} : {title: string , selectedDate: IDate, setDate : Dispatch<SetStateAction<IDate>>}) {
-    const [isShowDatePicker, setIsShowDatePicker] = useState<boolean>();
+    const [isShowDatePicker, setIsShowDatePicker] = useState<boolean>(false);
     const {containerRef} = useCloseContainerWhenClickOutside(setIsShowDatePicker);
     function renderDatePicker() {
         setIsShowDatePicker(true);
