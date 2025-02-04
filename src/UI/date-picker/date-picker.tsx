@@ -1,9 +1,8 @@
-import React from 'react';
-import { useState, useEffect, useRef, forwardRef } from 'react';
+import React, { JSX, useState, useEffect, forwardRef } from 'react';
 import { IDate } from '../../interfaces/uiInterfaces';
 import { datePickerHeaderOptions, timeUnitValues } from './constants';
-import "./date-picker.css";
 import { timeUnit } from './types';
+import "./date-picker.css"
 
 interface IDatePickerProps {
     onChangeDate: (date: IDate) => void
