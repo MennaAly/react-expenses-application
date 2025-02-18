@@ -1,0 +1,77 @@
+.expense-form {
+    display: flex;
+    border: 1px solid lightgrey;
+    flex-direction: column;
+    height: 350px;
+    width: 400px;
+}
+
+.expense-form__header {
+    height: 40%;
+    position: relative;
+    background-image: url("../assets/money-bag-background.png"); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;  
+    background-color: #6c84bc;  
+    border-radius: 8px 8px 0px 0px;  
+}
+
+.expense-form__close-icon {
+    position: relative;
+    left: 380px; /*this needs to be dynamic depending on the width of the modal*/
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.expense-form__title-amount-container {
+    display: flex;
+    gap: 8px;
+}
+
+.modal {
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 300; 
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 200;
+}
+
+.expense-form___inputs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-form__call-to-action {
+    background-color: #6c84bc;
+    border-radius: 8px;
+    border-style: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    text-align: center;
+    touch-action: manipulation;
+    flex-grow: 0;
+    width: 30%;
+    align-self: flex-end;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
