@@ -1,0 +1,49 @@
+.expenses-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.expenses-table {
+    border: 1px solid lightgrey;
+    width: 300px;
+    padding: 8px;
+}
+
+.expenses-table__data {
+    display: flex;
+    flex-direction: column;
+}
+
+.expenses-table__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.expenses-table__row-remove-button {
+    color: red;
+}
+
+.expenses-table__row-edit-button {
+    color: green;
+}
+
+.expenses-list__filter-button {
+    align-self: end;
+}
+
+.expenses-list__header {
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+    width: 100%;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
