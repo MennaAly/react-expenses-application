@@ -14,6 +14,7 @@
     "react-dom": "^19.0.0",
     "react-query": "^3.39.3",
     "react-scripts": "5.0.1",
+    "react-svg": "^16.3.0",
     "react-types": "^0.1.0",
     "typescript": "^5.7.3",
     "web-vitals": "^2.1.4"
@@ -22,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve-json": "json-server --watch db.json --port 4001"
   },
   "eslintConfig": {
     "extends": [
