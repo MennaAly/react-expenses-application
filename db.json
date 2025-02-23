@@ -1,28 +1,34 @@
 {
-    "expenses": [
-        {
-          "id": "0a33",
-          "title": "test save2",
-          "amount": "10",
-          "date": "2024-12-25"
-        },
-        {
-          "id": "0a34",
-          "title": "test save3",
-          "amount": "10",
-          "date": "2024-01-25"
-        },
-        {
-          "id": "0a35",
-          "title": "test save4",
-          "amount": "10",
-          "date": "2023-12-25"
-        },
-        {
-          "id": "0a36",
-          "title": "test save5",
-          "amount": "10",
-          "date": "2022-12-25"
-        }
-      ]
+  "expenses": [
+    {
+      "id": "0a33",
+      "title": "test123",
+      "amount": "10",
+      "date": "2024-12-25",
+      "isTitleEmpty": true,
+      "isAmountEmpty": false,
+      "isDateEmpty": false
+    },
+    {
+      "id": "0a34",
+      "title": "test save3",
+      "amount": "10",
+      "date": "2024-01-25",
+      "isTitleEmpty": false,
+      "isAmountEmpty": false,
+      "isDateEmpty": false
+    },
+    {
+      "id": "0a35",
+      "title": "test save4",
+      "amount": "10",
+      "date": "2023-12-25"
+    },
+    {
+      "id": "0a36",
+      "title": "test save5",
+      "amount": "10",
+      "date": "2022-12-25"
+    }
+  ]
 }
