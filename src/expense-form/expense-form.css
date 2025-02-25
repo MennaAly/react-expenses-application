@@ -75,3 +75,7 @@
     margin-right: 8px;
     margin-bottom: 8px;
 }
+
+.expense-form__call-to-action--disabled {
+    background-color: lightgray;
+}
