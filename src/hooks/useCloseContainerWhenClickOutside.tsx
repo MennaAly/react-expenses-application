@@ -1,11 +1,16 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
-function useCloseContainerWhenClickOutside(setCloseContainer: Dispatch<SetStateAction<boolean | undefined>>) {
-    const containerRef = useRef<HTMLDivElement | null>(null); // Explicitly define the type
+function useCloseContainerWhenClickOutside<S>({setState , property} : {setState: Dispatch<SetStateAction<S>>, property?: string}) {
+    const containerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         const handleClickOutside = (event: { target: any; }) => {
             if(containerRef.current && !containerRef.current.contains(event.target)) {
-                setCloseContainer(false);
+                setState((state) => {
+                    if(typeof state === "object" && property && state != null) {
+                        return {...state, [property]: false};
+                    }
+                    return false as S;
+                });
             }
         }
 
@@ -13,7 +18,7 @@ function useCloseContainerWhenClickOutside(setCloseContainer: Dispatch<SetStateA
         return () => {
             document.addEventListener("mousedown", handleClickOutside);
         }
-    },[]);
+    },[setState]);
     return {containerRef};
 }
 
