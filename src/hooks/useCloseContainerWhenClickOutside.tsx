@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
-function useCloseContainerWhenClickOutside<S>({setState , property} : {setState: Dispatch<SetStateAction<S>>, property?: string}) {
-    const containerRef = useRef<HTMLDivElement | null>(null);
+function useCloseContainerWhenClickOutside<S,T extends HTMLElement>({setState , property} : {setState: Dispatch<SetStateAction<S>>, property?: string}) {
+    const containerRef = useRef<T | null>(null);
     useEffect(() => {
         const handleClickOutside = (event: { target: any; }) => {
-            if(containerRef.current && !containerRef.current.contains(event.target)) {
+            if(containerRef.current && !containerRef.current.contains(event.target as Node)) {
                 setState((state) => {
                     if(typeof state === "object" && property && state != null) {
                         return {...state, [property]: false};
