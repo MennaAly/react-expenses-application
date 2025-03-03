@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { forwardRef, useReducer } from "react";
 import { createPortal } from 'react-dom';
 import { IExpenseFormField, IExpenseFormProps, IExpenseFormState } from "../interfaces/expenseInterface";
 import FormInput from "../UI/form-input/form-input";
@@ -21,7 +21,7 @@ function formReducer(state : IExpenseFormState, action : {type: string, payload:
     }
 }
 
-function ExpenseForm({action, expense: {id = '', title = '', amount = '', date = ''}, closeModal} : IExpenseFormProps) {
+const ExpenseForm = forwardRef<HTMLFormElement,IExpenseFormProps >(({action, expense: {id = '', title = '', amount = '', date = ''}, closeModal}, ref) =>{
     const initialExpenseState: IExpenseFormState = {
         id,
         title : {
@@ -54,7 +54,7 @@ function ExpenseForm({action, expense: {id = '', title = '', amount = '', date =
     return createPortal((
         <>
             <div className="overlay"></div>
-            <form className="expense-form modal">
+            <form ref={ref} className="expense-form modal">
                 <header className="expense-form__header">
                     <ReactSVG src={crossIcon} className="expense-form__close-icon" onClick={() => closeModal()}/>
                 </header>
@@ -67,8 +67,5 @@ function ExpenseForm({action, expense: {id = '', title = '', amount = '', date =
                 <button className={`expense-form__call-to-action ${!state.isFormValid ? 'expense-form__call-to-action--disabled' : null}`} disabled={state.isFormValid} onClick={(event) => submitExpense(event)}>{action.name}</button>
             </form>
         </>
-    ), document.getElementById('modal-root') as HTMLElement);
-    
-}
-
+    ), document.getElementById('modal-root') as HTMLElement);});
 export default ExpenseForm;
