@@ -5,7 +5,7 @@ import DatePicker from "../../date-picker/date-picker";
 
 function DateFilterDropdown({title , selectedDate, setDate} : {title: string , selectedDate: IDate, setDate : Dispatch<SetStateAction<IDate>>}) {
     const [isShowDatePicker, setIsShowDatePicker] = useState<boolean>(false);
-    const {containerRef} = useCloseContainerWhenClickOutside(setIsShowDatePicker);
+    const {containerRef} = useCloseContainerWhenClickOutside<boolean, HTMLDivElement>({setState: setIsShowDatePicker});
     function renderDatePicker() {
         setIsShowDatePicker(true);
     }
