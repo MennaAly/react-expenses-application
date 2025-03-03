@@ -1,4 +1,5 @@
 import React, {JSX, useState} from 'react';
+import { UseMutationResult } from 'react-query';
 import ExpenseForm from "../expense-form/expense-form";
 import useCloseContainerWhenClickOutside from '../hooks/useCloseContainerWhenClickOutside';
 import { useExpenseCreation, useExpenseEdit, useExpenseRemoval, useExpensesListData } from "../hooks/useExpenseData";
@@ -6,30 +7,39 @@ import { IExpense } from '../interfaces/expenseInterface';
 import { IDate } from '../interfaces/uiInterfaces';
 import Filters from '../UI/filters/filters';
 import "./expenses-list.css";
-
+interface IExpenseConfig{ 
+    showForm: boolean,
+    expense: IExpense,
+    action: {
+        name: string,
+        mutationFn: UseMutationResult<void, unknown, IExpense, unknown>
+    }
+}
 function ExpensesList() {
     const {data, isError, isLoading, error} = useExpensesListData(transformExpesnsesToJsx);
     const removeExpenseMutation = useExpenseRemoval();
     const createExpenseMutation = useExpenseCreation();
     const editExpenseMutation = useExpenseEdit();
-    const createExpenseConfig = {showForm: true, expense: {id:'', title: '',amount: '', date:''}, action: {name: 'create' , mutationFn: createExpenseMutation}};
-    const editExpenseConfig = {
+    const createExpenseConfig: IExpenseConfig = {showForm: true, expense: {id:'', title: '',amount: '', date:''}, action: {name: 'create' , mutationFn: createExpenseMutation}};
+    const editExpenseConfig: IExpenseConfig = {
         showForm: true,
         action: {
             name: 'edit',
             mutationFn: editExpenseMutation
-        }
+        },
+        expense: {id:'', title: '',amount: '', date:''}
     }    
-    const [expenseFormConfig, setExpenseFormConfig] = useState({...createExpenseConfig, showForm: false});
+    const [expenseFormConfig, setExpenseFormConfig] = useState<IExpenseConfig>({...createExpenseConfig, showForm: false});
     const [isShowFilter, setIsShowFilter] = useState(false);
-    const {containerRef} = useCloseContainerWhenClickOutside(setIsShowFilter)
+    const {containerRef: filtersRef} = useCloseContainerWhenClickOutside<boolean, HTMLDivElement>({setState: setIsShowFilter});
+    const {containerRef: expenseFormRef} = useCloseContainerWhenClickOutside<IExpenseConfig, HTMLFormElement>({setState: setExpenseFormConfig,property: "showForm"});
     const [filterCoords, setFilterCoords] = useState<DOMRect>(() => new DOMRect(0, 0, 0, 0));
     const [expensesList, setExpensesList] = useState<JSX.Element[]>();
     function removeExpense(id: string) {
         removeExpenseMutation.mutate(id);
     }
     function viewEditExpense(expense: IExpense) {
-        setExpenseFormConfig({expense, ...editExpenseConfig})
+        setExpenseFormConfig({...editExpenseConfig, expense})
     }
     function closeExpenseFormModal() {
         setExpenseFormConfig((prev) => {
@@ -88,7 +98,7 @@ function ExpensesList() {
                 <button className="expenses-list__filter-button" onClick={(event) => openFilterDropdown(event)}>Filter</button>
                 <button onClick={() => viewCreateExpense()}>Add new expense</button>
             </header>
-            {isShowFilter && <Filters ref={containerRef} parentRect={filterCoords} filterDate={filter}/> }
+            {isShowFilter && <Filters ref={filtersRef} parentRect={filterCoords} filterDate={filter}/> }
             <table className="expenses-table">
                 <thead>
                     <tr>
@@ -101,7 +111,7 @@ function ExpensesList() {
                     </tr>
                 </tbody>
             </table>
-            {expenseFormConfig.showForm ? (<ExpenseForm action={expenseFormConfig.action} expense={expenseFormConfig.expense}  closeModal={closeExpenseFormModal}/>): null}
+            {expenseFormConfig.showForm ? (<ExpenseForm ref={expenseFormRef} action={expenseFormConfig.action} expense={expenseFormConfig.expense}  closeModal={closeExpenseFormModal}/>): null}
         </div>
     );
 }
